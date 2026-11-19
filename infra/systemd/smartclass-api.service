@@ -1,0 +1,33 @@
+[Unit]
+Description=Smart Classroom API (REST + browser live WebSocket)
+After=network-online.target postgresql.service redis-server.service
+Wants=network-online.target
+Requires=postgresql.service redis-server.service
+
+[Service]
+Type=exec
+User=smartclass
+Group=smartclass
+WorkingDirectory=/opt/smartclass/backend
+EnvironmentFile=/etc/smartclass/backend.env
+ExecStart=/opt/smartclass/backend/.venv/bin/uvicorn app.api.main:app \
+  --host 127.0.0.1 --port 8000 --workers 2 \
+  --proxy-headers --forwarded-allow-ips 127.0.0.1 --no-server-header
+Restart=always
+RestartSec=3
+TimeoutStopSec=20
+
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/smartclass
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target

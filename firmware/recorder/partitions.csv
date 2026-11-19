@@ -1,0 +1,8 @@
+# ESP32-S3-DevKitC-1-N8R8, 8 MB flash.
+# audiobuf: raw circular log of ADPCM chunks, one 4 KB sector per 500 ms chunk.
+# 0x4F0000 bytes = 1264 sectors = 632 s (10.5 min) of offline audio, plus the PSRAM ring.
+# Name,    Type, SubType, Offset,   Size
+nvs,       data, nvs,     0x9000,   0x6000
+phy_init,  data, phy,     0xf000,   0x1000
+factory,   app,  factory, 0x10000,  0x300000
+audiobuf,  data, 0x40,    0x310000, 0x4F0000

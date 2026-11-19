@@ -1,0 +1,181 @@
+/*
+ * Design tokens. This is the ONLY file (with typography.css / fonts.css) allowed to contain raw
+ * colour, spacing and size values; `npm run lint:css` enforces that for every other stylesheet.
+ *
+ * Colours are written once as light-dark(<light>, <dark>). The active scheme comes from
+ * `color-scheme`, which follows the OS by default and is pinned by [data-theme] (see themes.css).
+ * Every text/background pair below is checked for WCAG AA in src/styles/tokens.test.ts.
+ *
+ * Status colours mirror the physical device LED:
+ *   red = recording · blue = processing · green = connected/completed
+ *   yellow = network disconnected · grey = idle
+ * Each status has: -solid (icon/dot, ≥ 3:1 on surfaces), -fg (text, ≥ 4.5:1 on -fill), -fill, -border.
+ *
+ * Breakpoints (custom properties cannot be used in media queries, so use these literals):
+ *   --bp-md: 48rem (768px) tablet · --bp-lg: 64rem (1024px) desktop
+ */
+:root {
+  /* ── Neutral surfaces & text ─────────────────────────────────────────── */
+  --color-bg: light-dark(#f7f7f5, #111315);
+  --color-surface: light-dark(#ffffff, #181b1e);
+  --color-surface-sunken: light-dark(#efefec, #0c0e10);
+  --color-surface-hover: light-dark(#f0f1ef, #22262a);
+  --color-text: light-dark(#1b1e22, #e7e9ec);
+  --color-text-muted: light-dark(#545b64, #a5abb3);
+  --color-border: light-dark(#dcdedf, #2d3237);
+  --color-border-strong: light-dark(#7d848d, #737b85);
+  --color-overlay: light-dark(rgb(17 19 21 / 0.45), rgb(0 0 0 / 0.6));
+
+  /* ── The single accent ───────────────────────────────────────────────── */
+  --color-accent: light-dark(#0d6b67, #5cc9c1);
+  --color-accent-hover: light-dark(#0a5653, #7fd8d1);
+  --color-accent-fg: light-dark(#ffffff, #082423);
+  --color-accent-subtle: light-dark(#e2f2f0, #12302e);
+  --color-accent-subtle-fg: light-dark(#0a524f, #9ee3dc);
+  --color-focus-ring: light-dark(#0d6b67, #5cc9c1);
+  --color-highlight: light-dark(#fff0a8, #5a4a0a);
+  --color-highlight-active: light-dark(#ffd54a, #8a6d00);
+  --color-highlight-fg: light-dark(#1b1e22, #fff8d6);
+
+  /* ── Feedback (errors are NOT status red: red means "recording") ────── */
+  --color-danger: light-dark(#9b1236, #ff8fa8);
+  --color-danger-fill: light-dark(#fbe8ed, #3a1320);
+  --color-danger-border: light-dark(#e3a3b3, #7a2d42);
+  --color-success-fg: light-dark(#14662c, #9be3ae);
+
+  /* ── Status (device LED mapping) ─────────────────────────────────────── */
+  --color-status-recording-solid: light-dark(#d1271b, #ff6b5e);
+  --color-status-recording-fg: light-dark(#a3170f, #ffb0a8);
+  --color-status-recording-fill: light-dark(#fdecea, #3d1714);
+  --color-status-recording-border: light-dark(#eba59f, #8c3a33);
+
+  --color-status-processing-solid: light-dark(#1d63cc, #6fa6ff);
+  --color-status-processing-fg: light-dark(#164e9f, #b0ccff);
+  --color-status-processing-fill: light-dark(#e8f0fd, #15284a);
+  --color-status-processing-border: light-dark(#a5c0ef, #35548a);
+
+  --color-status-connected-solid: light-dark(#1d8a3b, #58cd78);
+  --color-status-connected-fg: light-dark(#146b2d, #a3e6b5);
+  --color-status-connected-fill: light-dark(#e6f4ea, #12301c);
+  --color-status-connected-border: light-dark(#9fd3ad, #2f6a40);
+
+  /* Yellow can't reach 3:1 on white, so the icon/text use dark amber on a yellow fill (D7). */
+  --color-status-disconnected-solid: light-dark(#8a6100, #f5c84c);
+  --color-status-disconnected-fg: light-dark(#6b4b00, #fbe08f);
+  --color-status-disconnected-fill: light-dark(#fff3bf, #3a2f08);
+  --color-status-disconnected-border: light-dark(#d9a900, #8a6d12);
+
+  --color-status-idle-solid: light-dark(#69707a, #9aa1ab);
+  --color-status-idle-fg: light-dark(#474e57, #c9ced5);
+  --color-status-idle-fill: light-dark(#eff0f2, #24282d);
+  --color-status-idle-border: light-dark(#c3c7cc, #4a5058);
+
+  /* ── Spacing: 4px scale ──────────────────────────────────────────────── */
+  --space-0-5: 0.125rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* ── Sizes ───────────────────────────────────────────────────────────── */
+  --size-touch: 2.75rem; /* 44px minimum touch target */
+  --size-icon-sm: 1rem;
+  --size-icon: 1.25rem;
+  --size-icon-lg: 1.5rem;
+  --size-dot: 0.625rem;
+  --size-header: 3.5rem;
+  --size-avatar: 2rem;
+  --size-bottom-nav: 4rem;
+  --size-sidebar: 20rem;
+  --size-container: 72rem;
+  --size-form: 28rem;
+  --size-dialog: 32rem;
+  --size-menu: 14rem;
+  --size-tooltip: 20rem;
+  --size-toast: 24rem;
+  --size-flex-min: 16rem;
+  --size-flex-min-wide: 20rem;
+  --size-skeleton-line: 1em;
+  --measure: 70ch;
+  --measure-narrow: 40ch;
+  --measure-transcript: 52rem;
+  --size-timestamp: 4.25rem;
+  --size-meter-label: 7.5rem;
+  --letter-spacing-caps: 0.04em;
+  --border-width: 1px;
+  --border-width-thick: 2px;
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --underline-offset: 0.2em;
+
+  /* ── Radius ──────────────────────────────────────────────────────────── */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-full: 999px;
+
+  /* ── Typography ──────────────────────────────────────────────────────── */
+  --font-sans:
+    'Inter Variable', 'Noto Sans Telugu', 'Noto Sans Devanagari', system-ui, -apple-system,
+    'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Mono', 'Segoe UI Mono', Menlo, monospace;
+  --font-size-xs: 0.8125rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-body: 1.0625rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 1.875rem;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.4;
+  --line-height-body: 1.6;
+  /* Mixed Telugu/Devanagari lines need extra room for vowel signs above and below. */
+  --line-height-transcript: 1.75;
+  --transcript-font-size: 1.0625rem;
+
+  /* ── Elevation ───────────────────────────────────────────────────────── */
+  --shadow-1: 0 1px 2px light-dark(rgb(17 19 21 / 0.08), rgb(0 0 0 / 0.5));
+  --shadow-2:
+    0 4px 12px light-dark(rgb(17 19 21 / 0.12), rgb(0 0 0 / 0.55)),
+    0 1px 3px light-dark(rgb(17 19 21 / 0.08), rgb(0 0 0 / 0.4));
+
+  /* ── Motion ──────────────────────────────────────────────────────────── */
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 320ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ── Layers ──────────────────────────────────────────────────────────── */
+  --z-sticky: 10;
+  --z-header: 20;
+  --z-overlay: 40;
+  --z-toast: 50;
+}
+
+/* Transcript font size preference (Settings). Set via data attribute, never inline style. */
+:root[data-transcript-size='sm'] {
+  --transcript-font-size: 0.9375rem;
+}
+:root[data-transcript-size='lg'] {
+  --transcript-font-size: 1.25rem;
+}
+:root[data-transcript-size='xl'] {
+  --transcript-font-size: 1.4375rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+}

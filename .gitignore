@@ -1,0 +1,40 @@
+# Node / frontend
+node_modules/
+frontend/dist/
+frontend/coverage/
+frontend/playwright-report/
+frontend/test-results/
+frontend/stats.html
+
+# Python / backend / eval
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+backend/data/
+eval/results/
+eval/data/
+*.egg-info/
+
+# Firmware
+firmware/**/build/
+firmware/**/managed_components/
+firmware/**/sdkconfig
+firmware/**/sdkconfig.old
+firmware/lc_core/test_host/build/
+firmware/**/nvs_*.bin
+
+# Secrets and local config
+.env
+.env.*.local
+*.pem
+*.key
+backend/.env
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json

@@ -1,0 +1,13 @@
+/*
+ * Theme selection. Tokens use light-dark(), so switching theme only changes `color-scheme`.
+ * No [data-theme] → follow the OS. [data-theme] is set from the Settings preference.
+ */
+:root {
+  color-scheme: light dark;
+}
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}

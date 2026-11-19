@@ -1,0 +1,72 @@
+# Installed by infra/ec2/setup.sh as /etc/caddy/Caddyfile (__SITE_ADDRESS__ is replaced).
+# Caddy obtains and renews the TLS certificate automatically (ports 80 and 443 must be open).
+#
+#   /api/*          -> API on 127.0.0.1:8000, with the /api prefix stripped
+#   /ws/lectures/*  -> API browser live socket on 127.0.0.1:8000
+#   /ws/device      -> Device Gateway on 127.0.0.1:8001 (ESP32 recorders)
+#   everything else -> the built frontend (SPA fallback to index.html)
+
+{
+	servers {
+		# Lectures can run 2+ hours on one socket; never cut idle WebSockets short.
+		timeouts {
+			read_body 30s
+			idle 5m
+		}
+	}
+}
+
+__SITE_ADDRESS__ {
+	encode zstd gzip
+
+	log {
+		output file /var/log/caddy/smartclass-access.log {
+			roll_size 50MiB
+			roll_keep 10
+		}
+		format json
+	}
+
+	handle_path /api/* {
+		request_body {
+			max_size 10MB
+		}
+		reverse_proxy 127.0.0.1:8000
+	}
+
+	handle /ws/lectures/* {
+		reverse_proxy 127.0.0.1:8000 {
+			stream_close_delay 5m
+		}
+	}
+
+	handle /ws/device {
+		reverse_proxy 127.0.0.1:8001 {
+			stream_close_delay 5m
+		}
+	}
+
+	handle {
+		root * /var/www/smartclass
+
+		# Hashed build assets never change: cache for a year. Everything else (index.html for every
+		# SPA route, favicon) is revalidated. Matchers see the path before try_files rewrites it.
+		@assets path /assets/*
+		header @assets Cache-Control "public, max-age=31536000, immutable"
+		@other not path /assets/*
+		header @other Cache-Control "no-cache"
+
+		try_files {path} /index.html
+		file_server
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		X-Frame-Options "DENY"
+		Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' wss://{host}; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
+		-Server
+	}
+}

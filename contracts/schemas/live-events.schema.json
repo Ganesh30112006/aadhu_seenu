@@ -1,0 +1,538 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://smart-classroom.example/contracts/live-events.schema.json",
+  "title": "Browser live WebSocket messages (/ws/lectures/{id}/live)",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/transcript.partial"
+    },
+    {
+      "$ref": "#/$defs/transcript.final"
+    },
+    {
+      "$ref": "#/$defs/transcript.gap"
+    },
+    {
+      "$ref": "#/$defs/transcript.backfill"
+    },
+    {
+      "$ref": "#/$defs/lecture.status"
+    },
+    {
+      "$ref": "#/$defs/device.status"
+    },
+    {
+      "$ref": "#/$defs/key_terms.update"
+    },
+    {
+      "$ref": "#/$defs/notes.ready"
+    },
+    {
+      "$ref": "#/$defs/error"
+    },
+    {
+      "$ref": "#/$defs/pong"
+    },
+    {
+      "$ref": "#/$defs/subscribe"
+    },
+    {
+      "$ref": "#/$defs/ping"
+    },
+    {
+      "$ref": "#/$defs/render.ack"
+    }
+  ],
+  "$defs": {
+    "ms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "language": {
+      "enum": [
+        "en",
+        "te",
+        "hi"
+      ]
+    },
+    "base": {
+      "type": "object",
+      "required": [
+        "seq",
+        "type",
+        "server_ts"
+      ],
+      "properties": {
+        "seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "server_ts": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "segment": {
+      "type": "object",
+      "required": [
+        "segment_id",
+        "start_ms",
+        "end_ms",
+        "text",
+        "language",
+        "confidence"
+      ],
+      "properties": {
+        "segment_id": {
+          "type": "string"
+        },
+        "start_ms": {
+          "$ref": "#/$defs/ms"
+        },
+        "end_ms": {
+          "$ref": "#/$defs/ms"
+        },
+        "text": {
+          "type": "string"
+        },
+        "language": {
+          "$ref": "#/$defs/language"
+        },
+        "confidence": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "edited": {
+          "description": "Corrected by the lecturer (a final re-sent with the same segment_id replaces the line).",
+          "type": "boolean"
+        }
+      }
+    },
+    "transcript.partial": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        }
+      ],
+      "required": [
+        "segment_id",
+        "start_ms",
+        "end_ms",
+        "text",
+        "language"
+      ],
+      "properties": {
+        "type": {
+          "const": "transcript.partial"
+        },
+        "segment_id": {
+          "type": "string"
+        },
+        "start_ms": {
+          "$ref": "#/$defs/ms"
+        },
+        "end_ms": {
+          "$ref": "#/$defs/ms"
+        },
+        "text": {
+          "type": "string"
+        },
+        "language": {
+          "$ref": "#/$defs/language"
+        }
+      }
+    },
+    "transcript.final": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "$ref": "#/$defs/segment"
+        }
+      ],
+      "properties": {
+        "type": {
+          "const": "transcript.final"
+        }
+      }
+    },
+    "transcript.gap": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        }
+      ],
+      "required": [
+        "gap_id",
+        "gap"
+      ],
+      "properties": {
+        "type": {
+          "const": "transcript.gap"
+        },
+        "gap_id": {
+          "type": "string"
+        },
+        "gap": {
+          "type": "object",
+          "required": [
+            "start_ms",
+            "end_ms"
+          ],
+          "properties": {
+            "start_ms": {
+              "$ref": "#/$defs/ms"
+            },
+            "end_ms": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "transcript.backfill": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        }
+      ],
+      "required": [
+        "gap_id",
+        "segments",
+        "gap"
+      ],
+      "properties": {
+        "type": {
+          "const": "transcript.backfill"
+        },
+        "gap_id": {
+          "type": "string"
+        },
+        "segments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/segment"
+          }
+        },
+        "gap": {
+          "type": "object",
+          "required": [
+            "start_ms",
+            "end_ms"
+          ],
+          "properties": {
+            "start_ms": {
+              "$ref": "#/$defs/ms"
+            },
+            "end_ms": {
+              "$ref": "#/$defs/ms"
+            }
+          }
+        }
+      }
+    },
+    "lecture.status": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        }
+      ],
+      "required": [
+        "status",
+        "duration_ms"
+      ],
+      "properties": {
+        "type": {
+          "const": "lecture.status"
+        },
+        "status": {
+          "enum": [
+            "scheduled",
+            "recording",
+            "processing",
+            "completed",
+            "failed"
+          ]
+        },
+        "duration_ms": {
+          "$ref": "#/$defs/ms"
+        },
+        "paused": {
+          "description": "Capture paused on the device (status stays 'recording'). Optional, default false.",
+          "type": "boolean"
+        }
+      }
+    },
+    "device.status": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        }
+      ],
+      "required": [
+        "device_id",
+        "online",
+        "wifi_rssi",
+        "psram_buffer_pct",
+        "flash_buffer_pct",
+        "recording",
+        "last_seen_at"
+      ],
+      "properties": {
+        "type": {
+          "const": "device.status"
+        },
+        "device_id": {
+          "type": "string"
+        },
+        "online": {
+          "type": "boolean"
+        },
+        "wifi_rssi": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "psram_buffer_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "flash_buffer_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "recording": {
+          "type": "boolean"
+        },
+        "last_seen_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "paused": {
+          "type": "boolean"
+        },
+        "level_dbfs": {
+          "description": "Microphone level, about once a second while recording.",
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": -120,
+          "maximum": 0
+        },
+        "mic_ok": {
+          "description": "false after 60 s of silence while recording.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "pending_chunks": {
+          "description": "Chunks on the device not yet acknowledged (sync progress).",
+          "type": "integer",
+          "minimum": 0
+        },
+        "last_audio_at": {
+          "description": "When the server last stored audio from this device.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      }
+    },
+    "key_terms.update": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        }
+      ],
+      "required": [
+        "terms"
+      ],
+      "properties": {
+        "type": {
+          "const": "key_terms.update"
+        },
+        "terms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "term",
+              "definition",
+              "language",
+              "first_mentioned_ms"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "term": {
+                "type": "string"
+              },
+              "definition": {
+                "type": "string"
+              },
+              "language": {
+                "$ref": "#/$defs/language"
+              },
+              "first_mentioned_ms": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "notes.ready": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        }
+      ],
+      "required": [
+        "kinds"
+      ],
+      "properties": {
+        "type": {
+          "const": "notes.ready"
+        },
+        "kinds": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "summary",
+              "notes",
+              "key_terms",
+              "questions",
+              "flashcards",
+              "revision"
+            ]
+          }
+        }
+      }
+    },
+    "error": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        }
+      ],
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "type": {
+          "const": "error"
+        },
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "pong": {
+      "type": "object",
+      "required": [
+        "type",
+        "client_ts",
+        "server_ts"
+      ],
+      "properties": {
+        "type": {
+          "const": "pong"
+        },
+        "client_ts": {
+          "type": "number"
+        },
+        "server_ts": {
+          "type": "integer"
+        }
+      }
+    },
+    "subscribe": {
+      "type": "object",
+      "required": [
+        "type",
+        "lecture_id",
+        "last_seq"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "subscribe"
+        },
+        "lecture_id": {
+          "type": "string"
+        },
+        "last_seq": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "ping": {
+      "type": "object",
+      "required": [
+        "type",
+        "client_ts"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "ping"
+        },
+        "client_ts": {
+          "type": "number"
+        }
+      }
+    },
+    "render.ack": {
+      "type": "object",
+      "required": [
+        "type",
+        "seq",
+        "rendered_unix_ms"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "render.ack"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "rendered_unix_ms": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

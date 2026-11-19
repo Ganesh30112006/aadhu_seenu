@@ -1,0 +1,170 @@
+.list {
+  max-width: var(--measure-transcript);
+}
+
+.segment {
+  display: grid;
+  grid-template-columns: var(--size-timestamp) minmax(0, 1fr);
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-radius: var(--radius-md);
+}
+
+/* Only newly arrived live lines animate (virtualised rows remount while scrolling). */
+.fresh {
+  animation: appear var(--duration-slow) var(--ease-standard);
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    translate: 0 var(--space-1);
+  }
+}
+
+.time {
+  align-self: start;
+  min-height: var(--size-touch);
+  padding: 0 var(--space-1);
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  font-variant-numeric: tabular-nums;
+  text-align: left;
+  line-height: var(--size-touch);
+}
+
+.time:hover {
+  color: var(--color-accent);
+  background: var(--color-surface-hover);
+}
+
+.body {
+  min-width: 0;
+  padding-top: var(--space-2);
+}
+
+.text {
+  font-size: var(--transcript-font-size);
+  line-height: var(--line-height-transcript);
+  overflow-wrap: anywhere;
+}
+
+/* Partial (still being transcribed): lighter, never colour alone — also announced as text. */
+.partial .text {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.partial .text:lang(te),
+.partial .text:lang(hi) {
+  font-style: normal;
+}
+
+.transliteration {
+  margin-top: var(--space-1);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.late {
+  display: inline-flex;
+  color: var(--color-text-muted);
+}
+
+.late svg {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+.linked {
+  background: var(--color-accent-subtle);
+  box-shadow: inset var(--border-width-thick) 0 0 var(--color-accent);
+}
+
+.linkedLabel {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent-subtle-fg);
+}
+
+.mark {
+  background: var(--color-highlight);
+  color: var(--color-highlight-fg);
+  border-radius: var(--radius-sm);
+}
+
+.markActive {
+  background: var(--color-highlight-active);
+  outline: var(--border-width-thick) solid var(--color-text);
+}
+
+.gap {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin: var(--space-2) 0 var(--space-2) var(--size-timestamp);
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-width) dashed;
+  border-radius: var(--radius-md);
+}
+
+.gap svg {
+  width: var(--size-icon);
+  height: var(--size-icon);
+  flex-shrink: 0;
+  margin-top: var(--space-0-5);
+}
+
+.gapSyncing {
+  background: var(--color-status-disconnected-fill);
+  border-color: var(--color-status-disconnected-border);
+  color: var(--color-status-disconnected-fg);
+}
+
+.gapMissing {
+  background: var(--color-surface-sunken);
+  border-color: var(--color-border-strong);
+  color: var(--color-text-muted);
+}
+
+.gapTitle {
+  font-weight: var(--font-weight-semibold);
+}
+
+.gapHint {
+  font-size: var(--font-size-sm);
+}
+
+.spin {
+  animation: spin 1.4s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin,
+  .fresh {
+    animation: none;
+  }
+}
+
+.edited {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}

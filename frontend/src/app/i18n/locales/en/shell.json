@@ -1,0 +1,41 @@
+{
+  "skipToContent": "Skip to main content",
+  "nav": {
+    "label": "Main",
+    "home": "Home",
+    "library": "Library",
+    "search": "Search",
+    "devices": "Devices",
+    "subjects": "Subjects",
+    "users": "Users",
+    "settings": "Settings"
+  },
+  "userMenu": {
+    "label": "Account menu for {{name}}",
+    "role": {
+      "lecturer": "Lecturer",
+      "student": "Student",
+      "admin": "Administrator"
+    },
+    "settings": "Settings",
+    "signOut": "Sign out",
+    "signingOut": "Signing out…"
+  },
+  "navigating": "Loading page",
+  "notFound": {
+    "title": "Page not found",
+    "body": "The page you're looking for doesn't exist or has moved."
+  },
+  "routeError": {
+    "title": "This page couldn't be loaded",
+    "body": "Something went wrong while loading this page. Your other pages are unaffected.",
+    "chunkTitle": "A new version is available",
+    "chunkBody": "The app was updated while you were using it. Reload to get the latest version.",
+    "forbiddenTitle": "You don't have access to this page",
+    "forbiddenBody": "This page is only available to some roles. If you think this is a mistake, contact your administrator."
+  },
+  "widgetError": {
+    "title": "This section couldn't be shown",
+    "body": "The rest of the page still works."
+  }
+}

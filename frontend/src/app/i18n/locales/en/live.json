@@ -1,0 +1,126 @@
+{
+  "pageTitle": "Live: {{title}}",
+  "elapsed": "Elapsed",
+  "detectedLanguage": "Language",
+  "latency": "Delay {{ms}} ms",
+  "latencyUnknown": "Delay —",
+  "latencyHint": "Time between the server sending a line and it reaching you.",
+  "connection": {
+    "label": "Connection",
+    "idle": "Not connected",
+    "connecting": "Connecting…",
+    "live": "Live",
+    "reconnecting": "Reconnecting…",
+    "reconnectingIn": "Reconnecting in {{seconds}} s",
+    "offlineNetwork": "Offline",
+    "offlineHidden": "Paused",
+    "closedEnded": "Lecture ended",
+    "closedUnauthorized": "Signed out",
+    "closedNotFound": "Not available"
+  },
+  "connectionBanner": {
+    "reconnecting": "Connection lost. Reconnecting — you won't miss anything, the transcript will catch up.",
+    "offlineNetwork": "You're offline. The transcript will catch up when you reconnect.",
+    "offlineHidden": "Live updates paused while this tab was in the background.",
+    "resume": "Resume now",
+    "unauthorized": "Your session has ended. Sign in again to keep following the lecture.",
+    "signIn": "Sign in",
+    "notFound": "This lecture isn't available for live viewing."
+  },
+  "waiting": {
+    "lecturerTitle": "Ready to record",
+    "lecturerBody": "Press the record button on the classroom microphone to start. The transcript will appear here.",
+    "studentTitle": "Waiting for the lecture to start",
+    "studentBody": "The transcript will appear here as soon as the lecturer starts recording."
+  },
+  "ended": {
+    "title": "This lecture has ended",
+    "body": "Notes and the full transcript are being prepared.",
+    "notesReady": "Notes, summary and questions are ready.",
+    "open": "Open lecture"
+  },
+  "transcript": {
+    "label": "Live transcript",
+    "empty": "Listening… The first lines will appear in a few seconds.",
+    "jumpToLive": "Jump to live",
+    "newLines_one": "{{count}} new line",
+    "newLines_other": "{{count}} new lines",
+    "partial": "Still being transcribed",
+    "syncedLate": "Synced after the microphone reconnected"
+  },
+  "gap": {
+    "syncing": "Audio {{start}}–{{end}} syncing…",
+    "syncingOpen": "Audio from {{start}} syncing…",
+    "syncingHint": "The microphone kept recording while offline. This part will appear here automatically.",
+    "missing": "Audio {{start}}–{{end}} was not recorded"
+  },
+  "device": {
+    "offlineLecturer": "The classroom microphone has lost Wi-Fi. It is still recording and will send the missed audio when it reconnects.",
+    "offlineStudent": "Live captions are paused — the classroom microphone is reconnecting. Missed parts will appear automatically.",
+    "bufferLecturer": "The microphone's offline storage is {{pct}}% full. Move closer to the Wi-Fi router or check the network soon, or the oldest audio may be lost.",
+    "notRecordingLecturer": "The microphone isn't recording. Press its record button to continue."
+  },
+  "keyTerms": {
+    "heading": "Key terms",
+    "empty": "Key terms will appear here as they're mentioned.",
+    "open": "Key terms ({{count}})",
+    "firstMentioned": "First mentioned at {{time}}"
+  },
+  "announce": {
+    "toggle": "Read aloud",
+    "on": "Screen reader announcements on",
+    "off": "Screen reader announcements off"
+  },
+  "controls": {
+    "label": "Recording controls",
+    "start": "Start recording",
+    "pause": "Pause",
+    "resume": "Resume",
+    "stop": "Stop recording",
+    "stopTitle": "Stop recording?",
+    "stopBody": "The microphone finishes uploading, then notes and questions are generated. You can't continue this lecture afterwards.",
+    "stopConfirm": "Stop recording",
+    "cancel": "Keep recording",
+    "waiting": "Waiting for the microphone…",
+    "offlineHint": "The microphone is offline. Use its buttons, or wait for it to reconnect.",
+    "errors": {
+      "deviceOffline": "The microphone isn't connected to the server.",
+      "deviceBusy": "That microphone is recording another lecture.",
+      "invalidState": "The lecture changed state. Refresh and try again.",
+      "generic": "Couldn't send the command. Please try again."
+    }
+  },
+  "monitor": {
+    "heading": "Microphone",
+    "server": "Server link",
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "wifi": "Wi-Fi",
+    "mic": "Microphone",
+    "micOk": "Hearing speech",
+    "micSilent": "No speech for 60 s — check the microphone",
+    "micPaused": "Paused",
+    "micUnknown": "—",
+    "level": "Input level",
+    "levelValue": "{{db}} dBFS",
+    "storage": "Offline storage",
+    "sync": "Upload",
+    "synced": "Everything uploaded",
+    "pending_one": "{{count}} chunk waiting (about {{seconds}} s of audio)",
+    "pending_other": "{{count}} chunks waiting (about {{seconds}} s of audio)",
+    "lastAudio": "Last audio received",
+    "firmware": "Firmware"
+  },
+  "search": {
+    "label": "Find in live transcript",
+    "placeholder": "Find a word",
+    "matches_one": "{{count}} match",
+    "matches_other": "{{count}} matches",
+    "none": "No matches"
+  },
+  "toasts": {
+    "reconnected": "Reconnected. The transcript is up to date.",
+    "ended": "The lecture has ended.",
+    "notesReady": "Notes and study material are ready."
+  }
+}

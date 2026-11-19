@@ -1,0 +1,212 @@
+/* Dialog */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--color-overlay);
+  z-index: var(--z-overlay);
+  animation: fade var(--duration-base) var(--ease-standard);
+}
+
+.dialog {
+  position: fixed;
+  z-index: var(--z-overlay);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(calc(100vw - var(--space-8)), var(--size-dialog));
+  max-height: calc(100dvh - var(--space-8));
+  overflow-y: auto;
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+  animation: rise var(--duration-base) var(--ease-standard);
+}
+
+.dialogTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  padding-right: var(--size-touch);
+}
+
+.dialogDescription {
+  margin-top: var(--space-2);
+  color: var(--color-text-muted);
+}
+
+.dialogBody {
+  margin-top: var(--space-4);
+}
+
+.dialogClose {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+}
+
+.dialogActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+}
+
+/* Sheet: a dialog anchored to the bottom (mobile side panels) */
+.sheet {
+  position: fixed;
+  z-index: var(--z-overlay);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 80dvh;
+  overflow-y: auto;
+  padding: var(--space-4) var(--space-4) var(--space-8);
+  background: var(--color-surface);
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+  animation: slideUp var(--duration-base) var(--ease-standard);
+}
+
+/* Dropdown menu */
+.menu {
+  min-width: var(--size-menu);
+  padding: var(--space-1);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-2);
+  z-index: var(--z-overlay);
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--size-touch);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+.menuItem svg {
+  width: var(--size-icon);
+  height: var(--size-icon);
+  color: var(--color-text-muted);
+}
+
+.menuItem[data-highlighted] {
+  background: var(--color-accent-subtle);
+  color: var(--color-accent-subtle-fg);
+}
+
+.menuItem[data-disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.menuLabel {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.menuSeparator {
+  height: var(--border-width);
+  margin: var(--space-1) 0;
+  background: var(--color-border);
+}
+
+/* Tooltip */
+.tooltip {
+  max-width: var(--size-tooltip);
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-text);
+  color: var(--color-surface);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-snug);
+  z-index: var(--z-toast);
+}
+
+/* Toast */
+.toastViewport {
+  position: fixed;
+  z-index: var(--z-toast);
+  bottom: calc(var(--size-bottom-nav) + var(--space-4));
+  left: var(--space-4);
+  right: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  outline: none;
+}
+
+@media (min-width: 48rem) {
+  .toastViewport {
+    left: auto;
+    bottom: var(--space-6);
+    right: var(--space-6);
+    width: var(--size-toast);
+  }
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-2);
+  animation: rise var(--duration-base) var(--ease-standard);
+}
+
+.toast > svg {
+  width: var(--size-icon);
+  height: var(--size-icon);
+  flex-shrink: 0;
+}
+
+.toastSuccess > svg {
+  color: var(--color-status-connected-solid);
+}
+
+.toastError > svg {
+  color: var(--color-danger);
+}
+
+.toastInfo > svg {
+  color: var(--color-accent);
+}
+
+.toastTitle {
+  flex: 1;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 var(--space-2);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    translate: 0 100%;
+  }
+}

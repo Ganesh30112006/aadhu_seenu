@@ -1,0 +1,88 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+.hint {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-1);
+  font-size: var(--font-size-sm);
+  color: var(--color-danger);
+}
+
+.error svg {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+  flex-shrink: 0;
+  margin-top: var(--space-0-5);
+}
+
+.control {
+  width: 100%;
+  min-height: var(--size-touch);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+}
+
+.control::placeholder {
+  color: var(--color-text-muted);
+}
+
+.control[aria-invalid='true'] {
+  border-color: var(--color-danger);
+  border-width: var(--border-width-thick);
+}
+
+.control:disabled {
+  background: var(--color-surface-sunken);
+  cursor: not-allowed;
+}
+
+textarea.control {
+  min-height: calc(var(--size-touch) * 3);
+  resize: vertical;
+  line-height: var(--line-height-body);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+}
+
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  min-height: var(--size-touch);
+  padding: var(--space-2) 0;
+  cursor: pointer;
+}
+
+.check input {
+  width: var(--size-icon);
+  height: var(--size-icon);
+  margin-top: var(--space-0-5);
+  accent-color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.checkText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0-5);
+}

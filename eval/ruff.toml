@@ -1,0 +1,8 @@
+extend = "../backend/pyproject.toml"
+
+[lint.isort]
+# The backend package (installed editable in backend/.venv) and the eval modules are first-party.
+known-first-party = ["app", "worker", "tools", "metrics", "latency_report", "recovery_report", "asr_benchmark"]
+
+[lint.per-file-ignores]
+"tests/**" = ["S311"]  # seeded randomness for property-style tests, not cryptography

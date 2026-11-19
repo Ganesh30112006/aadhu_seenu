@@ -1,0 +1,59 @@
+{
+  "subjects": {
+    "title": "Subjects",
+    "description": "Subjects lecturers can record under.",
+    "code": "Code",
+    "name": "Name",
+    "codePlaceholder": "e.g. CS505",
+    "namePlaceholder": "e.g. Compiler Design",
+    "add": "Add subject",
+    "adding": "Adding…",
+    "added": "{{code}} added.",
+    "emptyTitle": "No subjects yet",
+    "emptyBody": "Add the first subject above.",
+    "errorTitle": "Couldn't load subjects",
+    "validation": {
+      "code": "Use 2–16 characters.",
+      "name": "Use 2–120 characters."
+    },
+    "errors": {
+      "exists": "That subject code already exists.",
+      "generic": "Couldn't add the subject. Please try again."
+    }
+  },
+  "users": {
+    "title": "Users",
+    "description": "Lecturers, students and administrators.",
+    "add": "Add user",
+    "addTitle": "Add a user",
+    "fullName": "Full name",
+    "email": "Email",
+    "role": "Role",
+    "password": "Initial password",
+    "passwordHint": "At least 8 characters. Share it privately; they should change it after signing in.",
+    "status": "Status",
+    "active": "Active",
+    "disabled": "Disabled",
+    "enable": "Enable {{name}}",
+    "disable": "Disable {{name}}",
+    "changeRole": "Role for {{name}}",
+    "you": "You",
+    "submit": "Add user",
+    "submitting": "Adding…",
+    "added": "{{name}} added.",
+    "updated": "{{name}} updated.",
+    "errorTitle": "Couldn't load users",
+    "validation": {
+      "fullName": "Enter a name.",
+      "email": "Enter a valid email address.",
+      "password": "Use at least 8 characters."
+    },
+    "errors": {
+      "exists": "A user with this email already exists.",
+      "self": "You can't disable your own account.",
+      "generic": "Couldn't save. Please try again."
+    },
+    "enableAction": "Enable",
+    "disableAction": "Disable"
+  }
+}

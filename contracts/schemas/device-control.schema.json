@@ -1,0 +1,425 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://smart-classroom.example/contracts/device-control.schema.json",
+  "title": "Device control messages (JSON text frames on /ws/device)",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/hello"
+    },
+    {
+      "$ref": "#/$defs/start"
+    },
+    {
+      "$ref": "#/$defs/resume"
+    },
+    {
+      "$ref": "#/$defs/stop"
+    },
+    {
+      "$ref": "#/$defs/pause"
+    },
+    {
+      "$ref": "#/$defs/status"
+    },
+    {
+      "$ref": "#/$defs/config"
+    },
+    {
+      "$ref": "#/$defs/ack"
+    },
+    {
+      "$ref": "#/$defs/lecture.assign"
+    },
+    {
+      "$ref": "#/$defs/lecture.started"
+    },
+    {
+      "$ref": "#/$defs/error"
+    },
+    {
+      "$ref": "#/$defs/command"
+    }
+  ],
+  "$defs": {
+    "uuid": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F-]{36}$"
+    },
+    "hello": {
+      "type": "object",
+      "required": [
+        "type",
+        "device_id",
+        "firmware_version",
+        "token",
+        "protocol_version"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "hello"
+        },
+        "device_id": {
+          "$ref": "#/$defs/uuid"
+        },
+        "firmware_version": {
+          "type": "string",
+          "maxLength": 32
+        },
+        "token": {
+          "type": "string",
+          "minLength": 16,
+          "maxLength": 128
+        },
+        "protocol_version": {
+          "const": 1
+        }
+      }
+    },
+    "start": {
+      "type": "object",
+      "required": [
+        "type",
+        "session_id",
+        "lecture_id",
+        "started_unix_ms",
+        "sample_rate"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "start"
+        },
+        "session_id": {
+          "$ref": "#/$defs/uuid"
+        },
+        "lecture_id": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/uuid"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "started_unix_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sample_rate": {
+          "const": 16000
+        }
+      }
+    },
+    "resume": {
+      "type": "object",
+      "required": [
+        "type",
+        "session_id",
+        "lecture_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "resume"
+        },
+        "session_id": {
+          "$ref": "#/$defs/uuid"
+        },
+        "lecture_id": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/uuid"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "stop": {
+      "type": "object",
+      "required": [
+        "type",
+        "session_id",
+        "last_seq"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "stop"
+        },
+        "session_id": {
+          "$ref": "#/$defs/uuid"
+        },
+        "last_seq": {
+          "type": "integer",
+          "minimum": -1
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "required": [
+        "type",
+        "wifi_rssi",
+        "psram_buffer_pct",
+        "flash_buffer_pct",
+        "uptime_s",
+        "recording",
+        "state",
+        "pending_chunks"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "status"
+        },
+        "wifi_rssi": {
+          "type": "integer",
+          "minimum": -127,
+          "maximum": 0
+        },
+        "psram_buffer_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "flash_buffer_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "uptime_s": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "recording": {
+          "type": "boolean"
+        },
+        "state": {
+          "enum": [
+            "BOOT",
+            "WIFI_CONNECTING",
+            "SERVER_CONNECTING",
+            "READY",
+            "RECORDING",
+            "RECORDING_OFFLINE",
+            "PAUSED",
+            "SYNCING",
+            "FINALIZING",
+            "ERROR"
+          ]
+        },
+        "pending_chunks": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "level_dbfs": {
+          "description": "Peak microphone level over the last status interval (optional).",
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": -120,
+          "maximum": 0
+        },
+        "mic_ok": {
+          "description": "false after 60 s of silence while recording (optional).",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "paused": {
+          "description": "Capture paused (optional, default false).",
+          "type": "boolean"
+        }
+      }
+    },
+    "config": {
+      "type": "object",
+      "required": [
+        "type",
+        "gain",
+        "vad_enabled",
+        "server_unix_ms"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "config"
+        },
+        "gain": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 16
+        },
+        "vad_enabled": {
+          "type": "boolean"
+        },
+        "server_unix_ms": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "ack": {
+      "type": "object",
+      "required": [
+        "type",
+        "session_id",
+        "seq",
+        "ranges"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "ack"
+        },
+        "session_id": {
+          "$ref": "#/$defs/uuid"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": -1
+        },
+        "ranges": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "integer",
+                "minimum": 0
+              }
+            ],
+            "minItems": 2,
+            "maxItems": 2
+          }
+        }
+      }
+    },
+    "lecture.assign": {
+      "type": "object",
+      "required": [
+        "type",
+        "lecture_id",
+        "title"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "lecture.assign"
+        },
+        "lecture_id": {
+          "$ref": "#/$defs/uuid"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 160
+        }
+      }
+    },
+    "lecture.started": {
+      "type": "object",
+      "required": [
+        "type",
+        "lecture_id",
+        "session_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "lecture.started"
+        },
+        "lecture_id": {
+          "$ref": "#/$defs/uuid"
+        },
+        "session_id": {
+          "$ref": "#/$defs/uuid"
+        }
+      }
+    },
+    "error": {
+      "type": "object",
+      "required": [
+        "type",
+        "code",
+        "message"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "error"
+        },
+        "code": {
+          "enum": [
+            "auth_failed",
+            "protocol_error",
+            "unknown_session",
+            "consent_required",
+            "internal"
+          ]
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "pause": {
+      "description": "Device → server: capture paused or resumed (button or web command). No chunks are produced while paused.",
+      "type": "object",
+      "required": [
+        "type",
+        "session_id",
+        "paused"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "pause"
+        },
+        "session_id": {
+          "$ref": "#/$defs/uuid"
+        },
+        "paused": {
+          "type": "boolean"
+        }
+      }
+    },
+    "command": {
+      "description": "Server → device: Start/Pause/Resume/Stop pressed on the web Live page; same effect as the device buttons.",
+      "type": "object",
+      "required": [
+        "type",
+        "action",
+        "lecture_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "command"
+        },
+        "action": {
+          "enum": [
+            "start",
+            "pause",
+            "resume",
+            "stop"
+          ]
+        },
+        "lecture_id": {
+          "$ref": "#/$defs/uuid"
+        }
+      }
+    }
+  }
+}

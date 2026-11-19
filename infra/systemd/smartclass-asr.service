@@ -1,0 +1,32 @@
+[Unit]
+Description=Smart Classroom ASR worker (faster-whisper)
+After=network-online.target postgresql.service redis-server.service
+Wants=network-online.target
+Requires=postgresql.service redis-server.service
+
+[Service]
+Type=exec
+User=smartclass
+Group=smartclass
+WorkingDirectory=/opt/smartclass/backend
+EnvironmentFile=/etc/smartclass/backend.env
+ExecStart=/opt/smartclass/backend/.venv/bin/python -m worker.asr.main
+Restart=always
+RestartSec=5
+TimeoutStopSec=30
+# Keep the API and gateway responsive when transcription saturates the CPU.
+Nice=5
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/smartclass
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target

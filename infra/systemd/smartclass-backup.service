@@ -1,0 +1,13 @@
+[Unit]
+Description=Smart Classroom nightly PostgreSQL backup
+After=postgresql.service
+Requires=postgresql.service
+
+[Service]
+Type=oneshot
+User=postgres
+Group=postgres
+EnvironmentFile=-/etc/smartclass/backup.env
+ExecStart=/usr/local/bin/smartclass-backup
+Nice=10
+IOSchedulingClass=idle

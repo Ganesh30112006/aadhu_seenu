@@ -1,0 +1,92 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.card:hover {
+  border-color: var(--color-border-strong);
+}
+
+.card:focus-within {
+  outline: var(--focus-ring-width) solid var(--color-focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-snug);
+}
+
+.link {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--color-accent);
+}
+
+.link:focus-visible {
+  outline: none;
+}
+
+/* Stretched link: the whole card is the click target, one tab stop. */
+.link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.subject {
+  font-weight: var(--font-weight-medium);
+}
+
+.lecturer {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.liveHint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent);
+}
+
+.liveHint svg {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+.languages {
+  display: inline-flex;
+  gap: var(--space-1);
+  margin-left: auto;
+}

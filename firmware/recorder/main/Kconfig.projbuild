@@ -1,0 +1,43 @@
+menu "Lecture Capture"
+
+    config LC_WIFI_SSID
+        string "Wi-Fi SSID (development fallback; NVS lc_cfg/wifi_ssid wins)"
+        default ""
+
+    config LC_WIFI_PASSWORD
+        string "Wi-Fi password (development fallback)"
+        default ""
+
+    config LC_SERVER_URL
+        string "Gateway URL (development fallback)"
+        default "wss://classroom.example.edu/ws/device"
+
+    config LC_DEVICE_ID
+        string "Device UUID (development fallback)"
+        default ""
+
+    config LC_DEVICE_TOKEN
+        string "Device token (development fallback)"
+        default ""
+
+    config LC_RING_SLOTS
+        int "PSRAM ring slots (500 ms PCM each, 16000 bytes)"
+        range 32 400
+        default 256
+        help
+            256 slots = 128 s of PCM in about 3.9 MiB of PSRAM.
+
+    config LC_OFFLINE_SPILL_AGE_MS
+        int "Spill to flash when offline and a chunk is older than (ms)"
+        default 2000
+
+    config LC_SPILL_PRESSURE_PCT
+        int "Spill to flash when the PSRAM ring is at least this full (%)"
+        range 50 95
+        default 80
+
+    config LC_MAX_IN_FLIGHT
+        int "Maximum un-ACKed chunks on the wire"
+        default 40
+
+endmenu

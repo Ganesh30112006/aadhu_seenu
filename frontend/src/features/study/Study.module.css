@@ -1,0 +1,313 @@
+.aiNote {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.aiNote svg {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+  flex-shrink: 0;
+  margin-top: var(--space-0-5);
+}
+
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: var(--measure);
+}
+
+.skeletonHeading {
+  width: 50%;
+  height: var(--space-6);
+}
+
+.skeletonLine {
+  height: var(--space-5);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.toolbarSpacer {
+  flex: 1;
+}
+
+.muted {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.notesLayout {
+  display: grid;
+  gap: var(--space-6);
+}
+
+@media (min-width: 64rem) {
+  .notesLayout {
+    grid-template-columns: var(--size-sidebar) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .toc {
+    position: sticky;
+    top: calc(var(--size-header) + var(--space-4));
+  }
+}
+
+.toc ol {
+  margin: 0;
+  padding-left: var(--space-5);
+}
+
+.toc li + li {
+  margin-top: var(--space-1);
+}
+
+.tocTitle {
+  margin-bottom: var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-caps);
+  color: var(--color-text-muted);
+}
+
+.section {
+  scroll-margin-top: calc(var(--size-header) + var(--space-16));
+}
+
+.section + .section {
+  margin-top: var(--space-8);
+}
+
+.sectionHeading {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+.sourceLink {
+  display: inline-flex;
+  min-height: var(--size-touch);
+  align-items: center;
+  font-size: var(--font-size-sm);
+}
+
+.editorSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.editorSection + .editorSection {
+  margin-top: var(--space-4);
+}
+
+.editorHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.editorHead h3 {
+  flex: 1;
+  font-size: var(--font-size-md);
+}
+
+.preview {
+  padding: var(--space-3);
+  border-left: var(--border-width-thick) solid var(--color-border-strong);
+  background: var(--color-surface-sunken);
+  border-radius: var(--radius-sm);
+}
+
+.terms {
+  display: grid;
+  gap: var(--space-4);
+  max-width: var(--measure);
+  margin: 0;
+}
+
+.terms dt {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-lg);
+}
+
+.terms dd {
+  margin: var(--space-1) 0 0;
+}
+
+.question {
+  max-width: var(--measure);
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.question + .question {
+  margin-top: var(--space-4);
+}
+
+.question legend {
+  font-weight: var(--font-weight-semibold);
+  padding: 0 var(--space-1);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--size-touch);
+  padding: var(--space-2) var(--space-3);
+  margin-top: var(--space-2);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.option input {
+  width: var(--size-icon);
+  height: var(--size-icon);
+  accent-color: var(--color-accent);
+}
+
+.optionCorrect {
+  border-color: var(--color-status-connected-border);
+  background: var(--color-status-connected-fill);
+}
+
+.optionWrong {
+  border-color: var(--color-danger-border);
+  background: var(--color-danger-fill);
+}
+
+.feedback {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  font-size: var(--font-size-sm);
+}
+
+.feedback svg {
+  width: var(--size-icon);
+  height: var(--size-icon);
+  flex-shrink: 0;
+}
+
+.correct {
+  color: var(--color-success-fg);
+}
+
+.incorrect {
+  color: var(--color-danger);
+}
+
+.score {
+  margin: var(--space-4) 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+.thread {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: var(--measure);
+  margin: 0 0 var(--space-6);
+  padding: 0;
+  list-style: none;
+}
+
+.bubble {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  border: var(--border-width) solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.bubbleQuestion {
+  background: var(--color-accent-subtle);
+  color: var(--color-accent-subtle-fg);
+  border-color: transparent;
+}
+
+.bubbleLabel {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-caps);
+}
+
+.citations {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.citation {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  border-left: var(--border-width-thick) solid var(--color-accent);
+  background: var(--color-surface-sunken);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.citation:hover {
+  background: var(--color-surface-hover);
+}
+
+.askForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: var(--measure);
+}
+
+.flashcard {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+  margin: var(--space-3) 0;
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.flashcardFront {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.flashcardBack {
+  display: grid;
+  gap: var(--space-2);
+  width: 100%;
+  padding-top: var(--space-3);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.flashcardBackLabel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}

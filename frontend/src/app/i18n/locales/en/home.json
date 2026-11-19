@@ -1,0 +1,28 @@
+{
+  "greeting": "Hello, {{name}}",
+  "lecturer": {
+    "subtitle": "Prepare today's lecture, then press record on the microphone.",
+    "devicesHeading": "Your microphones",
+    "recentHeading": "Your recent lectures",
+    "upcoming": "Prepared lectures",
+    "openLive": "Open live view"
+  },
+  "student": {
+    "subtitle": "Follow a lecture live, or revise one you missed.",
+    "liveHeading": "Happening now",
+    "liveEmpty": "No lecture is being recorded right now.",
+    "recentHeading": "Recent lectures",
+    "recentEmpty": "No lectures have been recorded yet.",
+    "joinLive": "Follow live",
+    "seeAll": "See all lectures"
+  },
+  "admin": {
+    "subtitle": "Monitor classroom microphones and manage people and subjects.",
+    "devicesHeading": "Devices",
+    "manageUsers": "Manage users",
+    "manageSubjects": "Manage subjects",
+    "allDevices": "All devices"
+  },
+  "recentErrorTitle": "Couldn't load recent lectures",
+  "devicesErrorTitle": "Couldn't load microphones"
+}

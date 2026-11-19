@@ -1,0 +1,67 @@
+.columns {
+  display: grid;
+  gap: var(--space-8);
+}
+
+@media (min-width: 64rem) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.row {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 48rem) {
+  .row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.error {
+  color: var(--color-danger);
+  font-size: var(--font-size-sm);
+}
+
+.lead {
+  margin-bottom: var(--space-3);
+  color: var(--color-text-muted);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skeletonCard {
+  height: calc(var(--space-16) * 2);
+  border-radius: var(--radius-lg);
+}
+
+.subjectGroup + .subjectGroup {
+  margin-top: var(--space-6);
+}
+
+.subjectTitle {
+  margin-bottom: var(--space-2);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}

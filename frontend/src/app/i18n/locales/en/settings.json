@@ -1,0 +1,97 @@
+{
+  "title": "Settings",
+  "description": "Your account, and how the app looks and behaves on this device.",
+  "appearance": {
+    "heading": "Appearance",
+    "theme": "Theme",
+    "themes": {
+      "system": "Match device",
+      "light": "Light",
+      "dark": "Dark"
+    }
+  },
+  "transcript": {
+    "heading": "Transcript",
+    "fontSize": "Text size",
+    "fontSizes": {
+      "sm": "Small",
+      "md": "Medium",
+      "lg": "Large",
+      "xl": "Extra large"
+    },
+    "preview": "Round Robin లో ప్రతి process కి ఒక time quantum ఇస్తాం। यह exam के लिए important है।",
+    "autoScroll": "Follow the live transcript automatically",
+    "autoScrollHint": "When on, the live transcript scrolls to new text while you're at the bottom.",
+    "announce": "Read new transcript lines aloud with a screen reader",
+    "announceHint": "Announces each finished line on the live screen. Off by default to avoid interrupting."
+  },
+  "language": {
+    "heading": "Languages",
+    "showLabels": "Show language labels (EN, TE, HI) on transcript lines",
+    "showTransliteration": "Show Telugu and Hindi lines in Latin script too",
+    "showTransliterationHint": "Adds a romanised version under each Telugu or Hindi line.",
+    "filter": "Show transcript lines in",
+    "filterHint": "Hidden languages are collapsed, not deleted. At least one language stays visible.",
+    "uiLanguage": "Interface language",
+    "uiLanguageComingSoon": "{{language}} (coming soon)"
+  },
+  "saved": "Saved",
+  "deviceNote": "The settings below are saved on this device only.",
+  "profile": {
+    "heading": "Profile",
+    "name": "Full name",
+    "nameRequired": "Enter your name.",
+    "email": "Email",
+    "role": "Role",
+    "roles": {
+      "lecturer": "Lecturer",
+      "student": "Student",
+      "admin": "Administrator"
+    },
+    "save": "Save profile",
+    "saved": "Profile saved.",
+    "error": "Couldn't save your profile. Please try again."
+  },
+  "password": {
+    "heading": "Password",
+    "intro": "Changing your password signs you out on your other devices.",
+    "current": "Current password",
+    "currentRequired": "Enter your current password.",
+    "new": "New password",
+    "newHint": "At least 8 characters.",
+    "tooShort": "Use at least 8 characters.",
+    "confirm": "Confirm new password",
+    "mismatch": "The passwords don't match.",
+    "submit": "Change password",
+    "changed": "Password changed.",
+    "wrong": "The current password is incorrect.",
+    "error": "Couldn't change the password. Please try again."
+  },
+  "notifications": {
+    "heading": "Notifications",
+    "intro": "Messages shown on the live lecture page.",
+    "connection": "When the microphone disconnects or reconnects",
+    "lectureEnded": "When the lecture ends",
+    "notesReady": "When notes are ready"
+  },
+  "system": {
+    "heading": "Server",
+    "intro": "Read-only. These values are set in the server configuration file.",
+    "environment": "Environment",
+    "llm": "AI model (notes, Q&A)",
+    "embedding": "Embedding model",
+    "asr": "Speech recognition",
+    "prompts": "Prompt version",
+    "retention": "Audio retention",
+    "retentionForever": "Keep audio forever",
+    "retentionDays_one": "Delete audio after {{count}} day",
+    "retentionDays_other": "Delete audio after {{count}} days",
+    "retentionHint": "Only the audio is deleted; transcripts and notes are kept.",
+    "deviceDefaults": "Device defaults",
+    "deviceDefaultsValue": "Gain {{gain}}×, voice detection {{vad}}",
+    "on": "on",
+    "off": "off",
+    "notConfigured": "Not configured",
+    "error": "Couldn't load the server settings"
+  }
+}

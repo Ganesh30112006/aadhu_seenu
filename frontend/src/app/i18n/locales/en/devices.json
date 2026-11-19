@@ -1,0 +1,110 @@
+{
+  "title": "Devices",
+  "description": "Classroom microphones and their health. Updates every 15 seconds.",
+  "emptyTitle": "No devices",
+  "emptyLecturer": "No microphone is assigned to you yet. Ask an administrator.",
+  "emptyAdmin": "Register the first classroom microphone to get started.",
+  "errorTitle": "Couldn't load devices",
+  "notFoundTitle": "Device not found",
+  "fields": {
+    "status": "Status",
+    "room": "Room",
+    "wifi": "Wi-Fi signal",
+    "buffer": "Offline storage used",
+    "lastSeen": "Last seen",
+    "firmware": "Firmware",
+    "serial": "Serial",
+    "recording": "Recording",
+    "currentLecture": "Current lecture",
+    "psram": "Memory buffer",
+    "flash": "Offline storage",
+    "micLevel": "Microphone level",
+    "micStatus": "Microphone",
+    "pending": "Audio chunks waiting to upload",
+    "gain": "Microphone gain",
+    "vad": "Voice detection"
+  },
+  "signal": {
+    "excellent": "Excellent",
+    "good": "Good",
+    "fair": "Fair",
+    "weak": "Weak",
+    "none": "No signal",
+    "dbm": "{{value}} dBm"
+  },
+  "buffer": {
+    "value": "{{pct}}%",
+    "high": "Almost full"
+  },
+  "lastSeen": {
+    "now": "Just now",
+    "ago": "{{time}} ago",
+    "never": "Never"
+  },
+  "recording": {
+    "yes": "Yes",
+    "no": "No",
+    "paused": "Paused"
+  },
+  "openLecture": "Open lecture",
+  "viewDetails": "View details",
+  "back": "All devices",
+  "register": {
+    "button": "Register device",
+    "title": "Register a microphone",
+    "description": "Enter the serial shown on the device's screen at first boot.",
+    "name": "Name",
+    "namePlaceholder": "e.g. Desk mic · Room 105",
+    "room": "Room",
+    "roomPlaceholder": "e.g. Block C, Room 105",
+    "serial": "Serial",
+    "serialHint": "12 characters, 0–9 and A–F.",
+    "submit": "Register",
+    "submitting": "Registering…",
+    "success": "{{name}} registered.",
+    "validation": {
+      "name": "Use 2–60 characters.",
+      "room": "Enter the room.",
+      "serial": "Serial must be 12 characters using 0–9 and A–F."
+    },
+    "errors": {
+      "exists": "A device with this serial is already registered.",
+      "generic": "Couldn't register the device. Please try again."
+    },
+    "tokenTitle": "Device token (shown once)",
+    "tokenBody": "Copy this token into the device configuration now (nvs_config.csv). It cannot be shown again; only its fingerprint is stored.",
+    "copyToken": "Copy token",
+    "done": "Done",
+    "lecturers": "Lecturers who may use it"
+  },
+  "mic": {
+    "level": "{{value}} dBFS",
+    "noReading": "No reading",
+    "unknown": "Not recording",
+    "ok": "Working",
+    "silent": "No sound for 60 seconds — check the microphone",
+    "gain": "{{value}}×"
+  },
+  "settings": {
+    "heading": "Device settings",
+    "gain": "Microphone gain",
+    "gainHint": "0.5 to 16. Raise it if the lecturer sounds quiet; lower it if the audio distorts.",
+    "gainInvalid": "Enter a gain between 0.5 and 16.",
+    "vad": "Voice detection",
+    "vadHint": "Skips long silences so less audio is uploaded.",
+    "appliedNote": "Gain and voice detection are applied the next time the device connects.",
+    "save": "Save settings",
+    "saved": "Device settings saved.",
+    "error": "Couldn't save the device settings. Please try again."
+  },
+  "lecturers": {
+    "heading": "Lecturers",
+    "legend": "Lecturers who may record with this device",
+    "loading": "Loading lecturers…",
+    "loadError": "Couldn't load the list of lecturers.",
+    "none": "There are no active lecturers yet. Add one under Users.",
+    "save": "Save lecturers",
+    "saved": "Lecturers updated.",
+    "error": "Couldn't update the lecturers. Please try again."
+  }
+}

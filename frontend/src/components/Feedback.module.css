@@ -1,0 +1,114 @@
+/* Banner */
+.banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-width) solid;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-snug);
+}
+
+.banner > svg {
+  width: var(--size-icon);
+  height: var(--size-icon);
+  flex-shrink: 0;
+  margin-top: var(--space-0-5);
+}
+
+.bannerBody {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  min-width: 0;
+}
+
+.bannerText {
+  flex: 1 1 var(--size-flex-min);
+}
+
+.info {
+  background: var(--color-accent-subtle);
+  color: var(--color-accent-subtle-fg);
+  border-color: var(--color-accent);
+}
+
+.warning {
+  background: var(--color-status-disconnected-fill);
+  color: var(--color-status-disconnected-fg);
+  border-color: var(--color-status-disconnected-border);
+}
+
+.warning > svg {
+  color: var(--color-status-disconnected-solid);
+}
+
+.danger {
+  background: var(--color-danger-fill);
+  color: var(--color-danger);
+  border-color: var(--color-danger-border);
+}
+
+.success {
+  background: var(--color-status-connected-fill);
+  color: var(--color-status-connected-fg);
+  border-color: var(--color-status-connected-border);
+}
+
+/* Skeleton */
+.skeleton {
+  display: block;
+  height: var(--size-skeleton-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-sunken);
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
+
+/* Empty / error states */
+.state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-10) var(--space-4);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.state > svg {
+  width: var(--size-icon-lg);
+  height: var(--size-icon-lg);
+}
+
+.stateTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+.stateBody {
+  max-width: var(--measure-narrow);
+}
+
+.errorIcon {
+  color: var(--color-danger);
+}
+
+.compact {
+  padding: var(--space-4);
+}

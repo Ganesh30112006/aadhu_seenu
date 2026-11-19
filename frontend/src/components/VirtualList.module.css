@@ -1,0 +1,12 @@
+.list {
+  position: relative;
+  width: 100%;
+  contain: layout;
+}
+
+.row {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}

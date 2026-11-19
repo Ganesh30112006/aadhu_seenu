@@ -1,0 +1,90 @@
+.meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+}
+
+.banner:not(:empty) {
+  margin-bottom: var(--space-4);
+}
+
+.export {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-1);
+}
+
+.export button svg:last-child {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.skeletonTitle {
+  width: 70%;
+  height: var(--space-8);
+}
+
+.skeletonMeta {
+  width: 45%;
+}
+
+.skeletonTabs {
+  height: var(--size-touch);
+}
+
+.searchBar {
+  position: sticky;
+  top: var(--size-header);
+  z-index: var(--z-sticky);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0 calc(var(--space-4) * -1) var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-bg);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.searchInput {
+  flex: 1 1 var(--size-flex-min);
+}
+
+.matches {
+  min-width: var(--space-16);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.note {
+  margin-bottom: var(--space-3);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.lines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.line {
+  height: var(--space-10);
+}

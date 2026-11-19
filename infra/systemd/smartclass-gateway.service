@@ -1,0 +1,34 @@
+[Unit]
+Description=Smart Classroom Device Gateway (wss /ws/device)
+After=network-online.target postgresql.service redis-server.service
+Wants=network-online.target
+Requires=postgresql.service redis-server.service
+
+[Service]
+Type=exec
+User=smartclass
+Group=smartclass
+WorkingDirectory=/opt/smartclass/backend
+EnvironmentFile=/etc/smartclass/backend.env
+# One process: a device's connection state (current session, ACK ranges) lives in memory.
+ExecStart=/opt/smartclass/backend/.venv/bin/uvicorn app.gateway.main:app \
+  --host 127.0.0.1 --port 8001 \
+  --proxy-headers --forwarded-allow-ips 127.0.0.1 --no-server-header \
+  --ws-max-size 1048576 --ws-ping-interval 20 --ws-ping-timeout 20
+Restart=always
+RestartSec=2
+TimeoutStopSec=20
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/smartclass
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target
